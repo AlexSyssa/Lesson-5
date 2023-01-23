@@ -1,10 +1,7 @@
 class Station
-
 	include InstanceCounter
-	
 	attr_accessor :name, :trains, :train
 	@@stations = []
-
 	def initialize(name)
 		@name = name
 		@trains = []
@@ -12,7 +9,6 @@ class Station
 		@@stations << self
 		register_instance
 	end
-
 	def add_train(train)
 		add_train!(train)
 	end

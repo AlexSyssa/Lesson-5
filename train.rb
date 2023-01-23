@@ -4,7 +4,6 @@ class Train
 
 	attr_accessor :wagons, :speed, :station, :route_station, :current_station_index, :type
 	attr_reader :id, :route, :wagon
-
 	@@trains = []
 
 	def initialize(id, type)
@@ -46,16 +45,13 @@ class Train
 	def previous_station
 		previous_station!
 	end
-
 	#Для данных методов должен быть доступ в подклассах, есть наследование.
 	#Ниже перечисленные методы не должны вызываться из клиентского кода, не входят в интерфейс класса.
 	protected
-
 	def speed_up!(value)
 		@speed += value
 		puts "Скорость поезда составляет: #{@speed}"
 	end
-
 	def speed!
 		puts "Скорость поезда составляет: #{@speed}"
 	end
@@ -63,11 +59,9 @@ class Train
 		@speed = 0
 		puts "Скорость поезда составляет: #{@speed}"
 	end
-
 	def amount_of_wagons!
 		puts "количество вагонов: #{wagons.size}"
 	end
-	
 	def delete_wagon!(wagon)
 		if @speed.zero? 
 			@wagons.delete(wagon)
@@ -85,15 +79,11 @@ class Train
 			puts "Прицепка вагонов может осуществляться только если поезд не движется"
 		end
 	end
-	
-	#Может принимать маршрут следования (объект класса Route). 
-	#При назначении маршрута поезду, поезд автоматически помещается на первую станцию в маршруте.
 	def take_route!(route)
 		@route = route
 		@current_station_index = 0
 		puts "Маршрут присвоен"
 	end
-	
 	def next_station!
 		if @current_station_index == 0
 			@current_station_index == 1
@@ -104,7 +94,6 @@ class Train
 		end
 		puts "Вы переместились на станцию #{@route.station[@current_station_index]}"
 	end
-	
 	def previous_station!
 		if @current_station_index == -1
 			@current_station_index == 1

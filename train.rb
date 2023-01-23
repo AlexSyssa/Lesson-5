@@ -15,13 +15,10 @@ class Train
 		@type = type
 		@@trains << self
 		register_instance
-
 	end
-
 	def self.find(id)
 		@@trains.find {|train| train.id == id}
 	end
-
 	def speed_up(value)
 		speed_up!(value)
 	end
@@ -62,7 +59,6 @@ class Train
 	def speed!
 		puts "Скорость поезда составляет: #{@speed}"
 	end
-
 	def stop!
 		@speed = 0
 		puts "Скорость поезда составляет: #{@speed}"
@@ -119,9 +115,4 @@ class Train
 		end
 		puts "Вы переместились на станцию #{@route.station[@current_station_index]}"
 	end
-	def find
-
-	end
-
-	
 end

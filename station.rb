@@ -28,34 +28,21 @@ class Station
 	#Нет наследования.
 	#Ниже перечисленные методы не должны вызываться из клиентского кода
 	private
-
-    #Может принимать поезда (по одному за раз)	
-	def add_train!(train)
+  def add_train!(train)
 		@trains.push(train)
 		puts "поезд #{train.id} принят"
 	end
-	
-	# Может возвращать список всех поездов на станции, находящиеся в текущий момент
-	def output_trains!
+  def output_trains!
 		@trains.each {|train| puts train.id}
 	end
-	
-	# Может возвращать список поездов на станции по типу (см. ниже): кол-во грузовых, пассажирских
 	def trains_by_type!(type)
 		@trains.each {|train| puts "На станции находятся #{train.id} поезд(а)" if type == type} 
 	end
-
-	# Может отправлять поезда (по одному за раз, при этом, поезд удаляется из списка поездов, находящихся на станции
 	def train_dispatch!(train)
 		@trains.delete(train) if trains.include?(train)
 		puts "Отправляется поезд #{train.id}"
 	end
-
 	def self.all
-		@@stations
 		@@stations.each{|station| puts station.name}
-
 	end
-
-
 end

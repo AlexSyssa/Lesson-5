@@ -8,9 +8,7 @@ require_relative 'cargo_train'
 require_relative 'wagon'
 require_relative 'passenger_wagon'
 require_relative 'cargo_wagon'
-
 class Main
-
 	MENU = [
 		{ id:0, title: 'Выйти из приложения', action: :exit },
 		{ id:1, title: 'Создать станцию"', action: :new_station },
@@ -26,7 +24,6 @@ class Main
 		{ id:11, title: 'Просмотреть список станций на маршруте', action: :list_stations },
 		{ id:12, title: 'Просмотреть список поездов на станции', action: :list_trains },
 	].freeze
-
 	attr_accessor :medium_station, :first_station, :last_station, :train, :number_trains, :number_train, :wagon, :wagons, :route, :station
 	def initialize
 		@trains = []
@@ -38,7 +35,6 @@ class Main
 		@route = route
 		@station = station
 	end
-
 	def start_menu
 		puts ""
 		puts ""
@@ -47,27 +43,22 @@ class Main
 			puts "#{item[:id]} - #{item[:title]}"
 		end
 	end
-
 	def program
 		loop do
 			start_menu
 			puts "Выберите необходимое действие и введите соответствующую цифру: "
-
 			choice = gets.chomp.to_i
 			break if choice.zero?
-
 			puts 
 			send(MENU[choice][:action])
 		end
 	end
-
 	def new_station
 		puts "Введите наименование станции"
 	 	name = gets.chomp
 	 	station = Station.new(name)
 	 	puts "Станция #{name} успешно создана"
 	end
-
 	def new_train
 		puts "Введите номер поезда"
 	 	id = gets.chomp.to_i
@@ -84,7 +75,6 @@ class Main
 	 		@trains << train
 	 	end
 	end
-	
 	def new_route
 	 	puts "Укажите первую станцию маршрута"
 	 	first_station_name = gets.chomp
@@ -95,18 +85,15 @@ class Main
 	 	@route = Route.new(first_station, last_station)
 	 	puts "Маршрут создан. Начальная станция маршрута - #{first_station_name}, конечная станция маршрута #{last_station_name}"
 	end
-
 	def add_station
 		puts "Введите наименование промежуточной станции"
 	  name = gets.chomp
 	 	station =  Station.new(name)
 	 	route.add_station(station)
 	end
-
 	def delete_station
 		route.delete_station(station)
 	end
-	
 	def set_route
 		puts "Введите номер поезда"
 		id = gets.chomp.to_i
@@ -142,7 +129,6 @@ class Main
 		end
 		train.add_wagon(wagon)
 		puts " Вагон № #{number} прицеплен к поезду № #{id}"
-
 	end
 	def delete_wagon
 		puts "Введите номер поезда"
@@ -151,34 +137,17 @@ class Main
 		number = gets.chomp.to_i
 		train.delete_wagon(wagon)
 	end
-
 	def next_station
 		train.next_station
 	end
-
 	def previous_station
 		train.previous_station
 	end
-
 	def list_stations
 		route.all_stations
 	end
-
 	def list_trains
 		@id_trains.each {|id| puts id}
 	end
-
-
 end
-
 Main.new.program
-
-
-
-	 	
-
-
-
-
-
-

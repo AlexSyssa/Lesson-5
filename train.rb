@@ -70,7 +70,6 @@ class Train
 			puts "Отцепка вагонов может осуществляться только если поезд не движется"
 		end
 	end
-	
 	def add_wagon!(wagon)
 		if @speed.zero?
 			wagons << wagon
